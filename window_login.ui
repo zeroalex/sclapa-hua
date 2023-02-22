@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.2">
+  <object class="ttk.Frame" id="login">
+    <property name="height">200</property>
+    <property name="width">250</property>
+    <layout manager="pack">
+      <property name="anchor">n</property>
+      <property name="expand">true</property>
+      <property name="fill">both</property>
+      <property name="side">left</property>
+    </layout>
+    <containerlayout manager="pack">
+      <property name="propagate">False</property>
+    </containerlayout>
+    <child>
+      <object class="ttk.Frame" id="incluir_frame">
+        <property name="height">20</property>
+        <property name="padding">20</property>
+        <property name="width">20</property>
+        <layout manager="pack">
+          <property name="anchor">nw</property>
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+          <property name="side">left</property>
+        </layout>
+        <containerlayout manager="pack">
+          <property name="propagate">False</property>
+        </containerlayout>
+        <child>
+          <object class="ttk.Frame" id="frame1">
+            <property name="height">20</property>
+            <property name="width">20</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="side">top</property>
+            </layout>
+            <containerlayout manager="pack">
+              <property name="propagate">False</property>
+            </containerlayout>
+            <child>
+              <object class="ttk.Frame" id="frame16">
+                <property name="height">70</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+                <containerlayout manager="pack">
+                  <property name="propagate">False</property>
+                </containerlayout>
+                <child>
+                  <object class="ttk.Frame" id="frame_logo">
+                    <property name="height">600</property>
+                    <property name="width">202</property>
+                    <layout manager="pack">
+                      <property name="anchor">s</property>
+                      <property name="expand">true</property>
+                      <property name="fill">both</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <containerlayout manager="pack">
+                      <property name="propagate">False</property>
+                    </containerlayout>
+                    <child>
+                      <object class="ttk.Label" id="logo">
+                        <property name="anchor">center</property>
+                        <property name="font">TkTextFont</property>
+                        <layout manager="pack">
+                          <property name="anchor">s</property>
+                          <property name="expand">false</property>
+                          <property name="fill">both</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <containerlayout manager="grid">
+                          <property name="propagate">False</property>
+                        </containerlayout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="frame17">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="expand">true</property>
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Separator" id="separator2">
+                    <property name="orient">horizontal</property>
+                    <layout manager="pack">
+                      <property name="expand">true</property>
+                      <property name="fill">x</property>
+                      <property name="padx">10</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="frame7">
+                <layout manager="pack">
+                  <property name="expand">true</property>
+                  <property name="fill">x</property>
+                  <property name="padx">10</property>
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Frame" id="frame2">
+                    <layout manager="pack">
+                      <property name="anchor">se</property>
+                      <property name="expand">true</property>
+                      <property name="fill">x</property>
+                      <property name="pady">5</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Menubutton" id="botao_seleciona_db">
+                        <property name="text" translatable="yes">data base - local</property>
+                        <bind sequence="&lt;1&gt;" handler="selecionar_db" add="" />
+                        <layout manager="pack">
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Frame" id="frame8">
+                    <layout manager="pack">
+                      <property name="anchor">se</property>
+                      <property name="expand">true</property>
+                      <property name="fill">x</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Button" id="login_cancelar_botao">
+                        <property name="command" type="command" cbtype="simple">logar</property>
+                        <property name="text" translatable="yes">Entrar</property>
+                        <layout manager="pack">
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">right</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

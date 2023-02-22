@@ -1,0 +1,2216 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.1">
+  <object class="ttk.Frame" id="principal2">
+    <property name="height">750</property>
+    <property name="width">1100</property>
+    <layout manager="pack">
+      <property name="anchor">n</property>
+      <property name="expand">true</property>
+      <property name="fill">both</property>
+      <property name="side">left</property>
+    </layout>
+    <child>
+      <object class="ttk.Frame" id="incluir_frame">
+        <property name="padding">20</property>
+        <layout manager="pack">
+          <property name="anchor">nw</property>
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+          <property name="side">left</property>
+        </layout>
+        <child>
+          <object class="ttk.Notebook" id="incluir_termo">
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="side">top</property>
+            </layout>
+            <child>
+              <object class="ttk.Notebook.Tab" id="tab9">
+                <property name="text" translatable="yes">Listar Multas</property>
+                <child>
+                  <object class="ttk.Frame" id="frame10">
+                    <property name="padding">20</property>
+                    <layout manager="pack">
+                      <property name="anchor">n</property>
+                      <property name="expand">true</property>
+                      <property name="fill">x</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Frame" id="frame2">
+                        <property name="width">400</property>
+                        <layout manager="pack">
+                          <property name="anchor">s</property>
+                          <property name="expand">true</property>
+                          <property name="fill">both</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Frame" id="lateral_label2">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">s</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">10</property>
+                              <property name="side">bottom</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame66">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Button" id="lateral_visualizar_botao">
+                                    <property name="command" type="command" cbtype="simple">visualizar_termo_lateral</property>
+                                    <property name="text" translatable="yes">Visualizar</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">e</property>
+                                      <property name="expand">false</property>
+                                      <property name="side">right</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="lateral_busca">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">ne</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="ipady">10</property>
+                              <property name="pady">10</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Button" id="lateral_busca_botao">
+                                <property name="command" type="command" cbtype="simple">buscar_infracao_lateral</property>
+                                <property name="text" translatable="yes">Buscar</property>
+                                <layout manager="pack">
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label2">
+                                <property name="text" translatable="yes">Empresa:</property>
+                                <property name="width">10</property>
+                                <layout manager="pack">
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Entry" id="lateral_busca_entrada">
+                                <property name="width">10</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="lateral_lista">
+                            <property name="height">2000</property>
+                            <property name="width">2000</property>
+                            <layout manager="pack">
+                              <property name="anchor">ne</property>
+                              <property name="expand">true</property>
+                              <property name="fill">both</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Treeview" id="treeview2">
+                                <property name="height">2000</property>
+                                <property name="selectmode">extended</property>
+                                <property name="show">headings</property>
+                                <bind sequence="&lt;&lt;TreeviewSelect&gt;&gt;" handler="selecionar_item_lateral" add="" />
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Treeview.Column" id="lateral_termo_item">
+                                    <property name="column_anchor">w</property>
+                                    <property name="heading_anchor">w</property>
+                                    <property name="minwidth">100</property>
+                                    <property name="stretch">false</property>
+                                    <property name="text" translatable="yes">termo</property>
+                                    <property name="tree_column">false</property>
+                                    <property name="visible">true</property>
+                                    <property name="width">110</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Treeview.Column" id="nome">
+                                    <property name="column_anchor">w</property>
+                                    <property name="heading_anchor">w</property>
+                                    <property name="minwidth">100</property>
+                                    <property name="stretch">false</property>
+                                    <property name="text" translatable="yes">infração</property>
+                                    <property name="tree_column">false</property>
+                                    <property name="visible">true</property>
+                                    <property name="width">110</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Treeview.Column" id="email">
+                                    <property name="column_anchor">w</property>
+                                    <property name="heading_anchor">w</property>
+                                    <property name="minwidth">100</property>
+                                    <property name="stretch">false</property>
+                                    <property name="text" translatable="yes">Data</property>
+                                    <property name="tree_column">false</property>
+                                    <property name="visible">true</property>
+                                    <property name="width">100</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Treeview.Column" id="empresa">
+                                    <property name="column_anchor">w</property>
+                                    <property name="heading_anchor">w</property>
+                                    <property name="minwidth">20</property>
+                                    <property name="stretch">true</property>
+                                    <property name="text" translatable="yes">Empresa</property>
+                                    <property name="tree_column">false</property>
+                                    <property name="visible">true</property>
+                                    <property name="width">200</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Notebook.Tab" id="tab5">
+                <property name="state">normal</property>
+                <property name="text" translatable="yes">Incluir</property>
+                <child>
+                  <object class="ttk.Frame" id="frame3">
+                    <property name="height">200</property>
+                    <property name="padding">10</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="expand">true</property>
+                      <property name="fill">both</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Frame" id="frame5">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Frame" id="frame6">
+                            <layout manager="pack">
+                              <property name="anchor">se</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">2</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="label1">
+                                <property name="font">{Helvetica} 20 {}</property>
+                                <property name="text" translatable="yes">Notificação de Penalidade</property>
+                                <layout manager="pack">
+                                  <property name="anchor">nw</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="incluir_termo_botao">
+                                <property name="command" type="command" cbtype="simple">carregar_numero_termo_incluir</property>
+                                <property name="text" translatable="yes">Clique p/ termo</property>
+                                <layout manager="pack">
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame16">
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">15</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Frame" id="frame7">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="labelframe4">
+                            <property name="height">200</property>
+                            <property name="padding">10</property>
+                            <property name="text" translatable="yes">Dados Empresa</property>
+                            <property name="width">2000</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="side">left</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame8">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label13">
+                                    <property name="text" translatable="yes">Nome</property>
+                                    <property name="width">10</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="incluir_empresa_entrada">
+                                    <property name="state">normal</property>
+                                    <property name="textvariable">string:true</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Button" id="button1">
+                                    <property name="command" type="command" cbtype="simple">buscar_empresa_pop</property>
+                                    <property name="text" translatable="yes">Buscar</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="side">right</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame77">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">10</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label20">
+                                    <property name="text" translatable="yes">Local</property>
+                                    <property name="width">10</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Combobox" id="incluir_local_entrada">
+                                    <property name="state">readonly</property>
+                                    <layout manager="pack">
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame78">
+                                    <property name="height">200</property>
+                                    <layout manager="pack">
+                                      <property name="expand">true</property>
+                                      <property name="fill">y</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="label22">
+                                        <property name="width">9</property>
+                                        <layout manager="pack">
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame15">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">5</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label21">
+                                    <property name="text" translatable="yes">Fiscal</property>
+                                    <property name="width">10</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Combobox" id="incluir_fiscal_entrada">
+                                    <property name="state">readonly</property>
+                                    <layout manager="pack">
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame1">
+                                    <property name="height">200</property>
+                                    <layout manager="pack">
+                                      <property name="expand">true</property>
+                                      <property name="fill">y</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="label8">
+                                        <property name="width">9</property>
+                                        <layout manager="pack">
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Frame" id="frame9">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="labelframe2">
+                            <property name="height">200</property>
+                            <property name="padding">10</property>
+                            <property name="text" translatable="yes">Infração</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="side">left</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame11">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">4</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Frame" id="frame12">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="label19">
+                                        <property name="text" translatable="yes">Norma</property>
+                                        <property name="width">10</property>
+                                        <layout manager="pack">
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Button" id="botao">
+                                        <property name="command" type="command" cbtype="simple">buscar_infracao_pop</property>
+                                        <property name="text" translatable="yes">Buscar</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="side">right</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Entry" id="incluir_infracao_entrada">
+                                        <property name="state">normal</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame13">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">4</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label24">
+                                    <property name="text" translatable="yes">Data</property>
+                                    <property name="width">10</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="incluir_data_entrada">
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame14">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">4</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label25">
+                                    <property name="text" translatable="yes">Hora</property>
+                                    <property name="width">10</property>
+                                    <layout manager="pack">
+                                      <property name="expand">false</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="incluir_hora_entrada">
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame23">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">4</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label26">
+                                    <property name="text" translatable="yes">Local Infr.</property>
+                                    <property name="width">10</property>
+                                    <layout manager="pack">
+                                      <property name="expand">false</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="incluir_local_infracao_entrada">
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Frame" id="frame71">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">s</property>
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="pady">10</property>
+                          <property name="side">bottom</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Button" id="incluir_gravar_botao">
+                            <property name="command" type="command" cbtype="simple">cadastrar_multa</property>
+                            <property name="text" translatable="yes">Gravar</property>
+                            <layout manager="pack">
+                              <property name="anchor">se</property>
+                              <property name="side">right</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Button" id="incluir_cancelar_botao">
+                            <property name="text" translatable="yes">Cancelar</property>
+                            <layout manager="pack">
+                              <property name="anchor">se</property>
+                              <property name="side">right</property>
+                            </layout>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Frame" id="frame26">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">n</property>
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">bottom</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="labelframe9">
+                            <property name="height">200</property>
+                            <property name="padding">10</property>
+                            <property name="text" translatable="yes">Observação</property>
+                            <property name="width">2000</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="side">right</property>
+                            </layout>
+                            <child>
+                              <object class="tk.Text" id="incluir_observacao_entrada">
+                                <property name="height">5</property>
+                                <property name="width">5</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">both</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Notebook.Tab" id="tab6">
+                <property name="text" translatable="yes">Visualizar</property>
+                <child>
+                  <object class="ttk.Frame" id="frame20">
+                    <property name="height">200</property>
+                    <property name="padding">20</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="anchor">n</property>
+                      <property name="expand">true</property>
+                      <property name="fill">both</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Frame" id="visualizar_corpo">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">n</property>
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Frame" id="frame25">
+                            <layout manager="pack">
+                              <property name="anchor">se</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">2</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="visualizar_titulo_label">
+                                <property name="font">{Helvetica} 20 {}</property>
+                                <property name="takefocus">false</property>
+                                <property name="text" translatable="yes">Notificação de Penalidade</property>
+                                <layout manager="pack">
+                                  <property name="anchor">nw</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Spinbox" id="visulalizar_num_termo_spin">
+                                <property name="command" type="command" cbtype="simple">carregar_visualizar_termo</property>
+                                <property name="increment">001</property>
+                                <property name="text" translatable="yes">selecione</property>
+                                <property name="validate">key</property>
+                                <layout manager="pack">
+                                  <property name="anchor">ne</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame27">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">10</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Separator" id="separator1">
+                                <property name="orient">horizontal</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame18">
+                            <layout manager="pack">
+                              <property name="anchor">se</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="visualizar_empresa_label">
+                                <property name="anchor">ne</property>
+                                <property name="justify">left</property>
+                                <property name="text" translatable="yes">Empresa: </property>
+                                <layout manager="pack">
+                                  <property name="pady">5</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame44">
+                            <layout manager="pack">
+                              <property name="anchor">se</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">5</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="visualizar_localizacao_label">
+                                <property name="anchor">ne</property>
+                                <property name="justify">left</property>
+                                <property name="text" translatable="yes">Localização: </property>
+                                <layout manager="pack">
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame28">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">10</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Separator" id="separator4">
+                                <property name="orient">horizontal</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame29">
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">5</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame33">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="visualizar_infracao_label">
+                                    <property name="text" translatable="yes">Infração: </property>
+                                    <layout manager="pack">
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame34">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="visualizar_peso_label">
+                                    <property name="padding">5</property>
+                                    <property name="text" translatable="yes">Peso:</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">w</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">y</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame32">
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">5</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame4">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="anchor">e</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="tk.Text" id="visualizar_descricao_mesage">
+                                    <property name="height">5</property>
+                                    <property name="text" translatable="yes">Descrição</property>
+                                    <property name="width">30</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">w</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame19">
+                                <layout manager="pack">
+                                  <property name="anchor">ne</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Frame" id="frame37">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">w</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="padx">5</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="visualizar_hora_label">
+                                        <property name="text" translatable="yes">Hora:</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">e</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame38">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="padx">5</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="visualizar_fiscal_label">
+                                        <property name="text" translatable="yes">Fiscal:</property>
+                                        <layout manager="pack">
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame39">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="padx">5</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="visualizar_local_ocorrencia_label">
+                                        <property name="text" translatable="yes">Local:</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">e</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame21">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="padx">5</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="visualizar_data_label">
+                                        <property name="text" translatable="yes">Data: </property>
+                                        <layout manager="pack">
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame31">
+                            <layout manager="pack">
+                              <property name="anchor">se</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">5</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="visualizar_observacao_label">
+                                <property name="anchor">ne</property>
+                                <property name="justify">left</property>
+                                <property name="text" translatable="yes">Observação: </property>
+                                <layout manager="pack">
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Frame" id="visualizar_botao">
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">n</property>
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="pady">10</property>
+                          <property name="side">bottom</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Frame" id="frame24">
+                            <property name="height">200</property>
+                            <property name="padding">10</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="visualizar_recomendacao_label">
+                                <property name="padding">5</property>
+                                <property name="takefocus">true</property>
+                                <layout manager="pack">
+                                  <property name="anchor">e</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">y</property>
+                                  <property name="padx">5</property>
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label5">
+                                <property name="padding">5</property>
+                                <property name="takefocus">true</property>
+                                <property name="text" translatable="yes">Recomendado:</property>
+                                <layout manager="pack">
+                                  <property name="anchor">e</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">y</property>
+                                  <property name="padx">5</property>
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame22">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Button" id="button3">
+                                <property name="command" type="command" cbtype="simple">imprimir_termo</property>
+                                <property name="text" translatable="yes">Imprimir</property>
+                                <layout manager="pack">
+                                  <property name="anchor">e</property>
+                                  <property name="expand">false</property>
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="button4">
+                                <property name="command" type="command" cbtype="simple">relatorio_aplicar_multa</property>
+                                <property name="text" translatable="yes">Aplicar</property>
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="expand">false</property>
+                                  <property name="padx">5</property>
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Combobox" id="visualizar_acao_combobox">
+                                <property name="state">readonly</property>
+                                <layout manager="pack">
+                                  <property name="padx">5</property>
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="visualizar_situacao_label">
+                                <property name="padding">5</property>
+                                <property name="takefocus">true</property>
+                                <property name="text" translatable="yes">Situação: </property>
+                                <layout manager="pack">
+                                  <property name="anchor">e</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">y</property>
+                                  <property name="padx">5</property>
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Frame" id="visualizar_lista">
+                        <property name="height">2000</property>
+                        <property name="width">2000</property>
+                        <layout manager="pack">
+                          <property name="anchor">ne</property>
+                          <property name="expand">true</property>
+                          <property name="fill">both</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Notebook" id="notebook1">
+                            <property name="height">2000</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="fill">x</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Notebook.Tab" id="tab3">
+                                <property name="text" translatable="yes">Histórico</property>
+                                <child>
+                                  <object class="ttk.Frame" id="frame67">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame41">
+                                        <property name="padding">10</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="pady">5</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Checkbutton" id="visualizar_empresa_checkbutton">
+                                            <property name="command" type="command" cbtype="simple">atualizar_historico_multa</property>
+                                            <property name="cursor">hand1</property>
+                                            <property name="text" translatable="yes">Empresa</property>
+                                            <layout manager="pack">
+                                              <property name="ipadx">10</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Checkbutton" id="visualizar_infracao_checkbutton">
+                                            <property name="command" type="command" cbtype="simple">atualizar_historico_multa</property>
+                                            <property name="cursor">hand1</property>
+                                            <property name="text" translatable="yes">Infração</property>
+                                            <layout manager="pack">
+                                              <property name="ipadx">10</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Treeview" id="visualizar_historico_treview">
+                                        <property name="height">2000</property>
+                                        <property name="selectmode">extended</property>
+                                        <property name="show">headings</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">both</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Treeview.Column" id="column1">
+                                            <property name="column_anchor">w</property>
+                                            <property name="heading_anchor">w</property>
+                                            <property name="minwidth">15</property>
+                                            <property name="stretch">true</property>
+                                            <property name="text" translatable="yes">termo</property>
+                                            <property name="tree_column">false</property>
+                                            <property name="visible">true</property>
+                                            <property name="width">15</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Treeview.Column" id="column2">
+                                            <property name="column_anchor">w</property>
+                                            <property name="heading_anchor">w</property>
+                                            <property name="minwidth">15</property>
+                                            <property name="stretch">true</property>
+                                            <property name="text" translatable="yes">infração</property>
+                                            <property name="tree_column">false</property>
+                                            <property name="visible">true</property>
+                                            <property name="width">15</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Treeview.Column" id="column5">
+                                            <property name="column_anchor">w</property>
+                                            <property name="heading_anchor">w</property>
+                                            <property name="minwidth">15</property>
+                                            <property name="stretch">true</property>
+                                            <property name="text" translatable="yes">Data</property>
+                                            <property name="tree_column">false</property>
+                                            <property name="visible">true</property>
+                                            <property name="width">15</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Treeview.Column" id="column3">
+                                            <property name="column_anchor">w</property>
+                                            <property name="heading_anchor">w</property>
+                                            <property name="minwidth">2</property>
+                                            <property name="stretch">true</property>
+                                            <property name="text" translatable="yes">Empresa</property>
+                                            <property name="tree_column">false</property>
+                                            <property name="visible">true</property>
+                                            <property name="width">100</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Notebook.Tab" id="tab4">
+                                <property name="text" translatable="yes">Processo</property>
+                                <child>
+                                  <object class="ttk.Frame" id="frame69">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame40">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="expand">true</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Label" id="processo_emissao_data">
+                                            <property name="anchor">e</property>
+                                            <property name="justify">left</property>
+                                            <property name="text" translatable="yes">Data Emissão: </property>
+                                            <property name="width">15</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Entry" id="processo_emissao_data_entry">
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Button" id="button7">
+                                            <property name="command" type="command" cbtype="simple">processo_emissao_data_gravar</property>
+                                            <property name="text" translatable="yes">Aplicar</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame59">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="expand">true</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Label" id="processo_pos_secme">
+                                            <property name="anchor">e</property>
+                                            <property name="text" translatable="yes">Pós SECME:</property>
+                                            <property name="width">15</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Entry" id="processo_pos_secme_entry">
+                                            <property name="text" translatable="yes">entry2</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Button" id="button8">
+                                            <property name="command" type="command" cbtype="simple">processo_pos_secme_gravar</property>
+                                            <property name="text" translatable="yes">Aplicar</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame64">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="expand">true</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Label" id="processo_oficio_saexe">
+                                            <property name="anchor">e</property>
+                                            <property name="text" translatable="yes">Data do Ofício: </property>
+                                            <property name="width">15</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Entry" id="processo_oficio_saexe_entry">
+                                            <property name="text" translatable="yes">entry3</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Button" id="button9">
+                                            <property name="text" translatable="yes">Aplicar</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame65">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Label" id="processo_conclisao_data">
+                                            <property name="anchor">e</property>
+                                            <property name="text" translatable="yes">Data Conclusão: </property>
+                                            <property name="width">15</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Entry" id="processo_conclisao_data_entry">
+                                            <property name="text" translatable="yes">entry4</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Button" id="button10">
+                                            <property name="text" translatable="yes">Aplicar</property>
+                                            <layout manager="pack">
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Notebook.Tab" id="tab1">
+                <property name="text" translatable="yes">Procurar</property>
+                <child>
+                  <object class="ttk.Frame" id="frame52">
+                    <property name="height">200</property>
+                    <property name="padding">20</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Frame" id="frame54">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">n</property>
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Frame" id="frame53">
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">2</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="label11">
+                                <property name="font">{Helvetica} 20 {}</property>
+                                <property name="takefocus">false</property>
+                                <property name="text" translatable="yes">Buscar Empresas</property>
+                                <layout manager="pack">
+                                  <property name="anchor">nw</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame57">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">10</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Separator" id="separator8">
+                                <property name="orient">horizontal</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame58">
+                            <layout manager="pack">
+                              <property name="anchor">se</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="label12">
+                                <property name="justify">left</property>
+                                <property name="text" translatable="yes">Nome: </property>
+                                <property name="width">10</property>
+                                <layout manager="pack">
+                                  <property name="pady">5</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="button6">
+                                <property name="command" type="command" cbtype="simple">procurar_empresas_nome</property>
+                                <property name="text" translatable="yes">Buscar</property>
+                                <layout manager="pack">
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Entry" id="procurar_nome_entrada">
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">right</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame60">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">10</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Separator" id="separator9">
+                                <property name="orient">horizontal</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame61">
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">5</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame62">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label17">
+                                    <property name="text" translatable="yes">Pavilhão: </property>
+                                    <property name="width">10</property>
+                                    <layout manager="pack">
+                                      <property name="expand">false</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Combobox" id="procurar_pavilhao_combobox">
+                                    <property name="state">readonly</property>
+                                    <bind sequence="&lt;&lt;ComboboxSelected&gt;&gt;" handler="procurar_empresas_pavilhao" add="" />
+                                    <layout manager="pack">
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame63">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label18">
+                                    <property name="padding">5</property>
+                                    <property name="text" translatable="yes">Sub-Grupo</property>
+                                    <property name="width">10</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">w</property>
+                                      <property name="expand">false</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Combobox" id="procurar_subpavilhao_combobox">
+                                    <property name="state">readonly</property>
+                                    <bind sequence="&lt;&lt;ComboboxSelected&gt;&gt;" handler="procurar_empresas_subpavilhao" add="" />
+                                    <layout manager="pack">
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame70">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Notebook" id="notebook2">
+                                <property name="height">2000</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="fill">x</property>
+                                  <property name="pady">10</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Notebook.Tab" id="tab7">
+                                    <property name="text" translatable="yes">Informações</property>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame73">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame74">
+                                            <property name="padding">10</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">true</property>
+                                              <property name="fill">x</property>
+                                              <property name="pady">5</property>
+                                              <property name="side">top</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Checkbutton" id="checkbutton3">
+                                                <property name="command" type="command" cbtype="simple">atualizar_historico_multa</property>
+                                                <property name="cursor">hand1</property>
+                                                <property name="text" translatable="yes">Inativas</property>
+                                                <layout manager="pack">
+                                                  <property name="ipadx">10</property>
+                                                  <property name="side">left</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Checkbutton" id="checkbutton4">
+                                                <property name="command" type="command" cbtype="simple">atualizar_historico_multa</property>
+                                                <property name="cursor">hand1</property>
+                                                <property name="text" translatable="yes">Ambulantes</property>
+                                                <layout manager="pack">
+                                                  <property name="ipadx">10</property>
+                                                  <property name="side">left</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Treeview" id="procurar_lista_treeview">
+                                            <property name="height">2000</property>
+                                            <property name="selectmode">extended</property>
+                                            <property name="show">headings</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">true</property>
+                                              <property name="fill">both</property>
+                                              <property name="side">top</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Treeview.Column" id="column10">
+                                                <property name="column_anchor">w</property>
+                                                <property name="heading_anchor">w</property>
+                                                <property name="minwidth">15</property>
+                                                <property name="stretch">true</property>
+                                                <property name="text" translatable="yes">Pavilhão</property>
+                                                <property name="tree_column">false</property>
+                                                <property name="visible">true</property>
+                                                <property name="width">15</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Treeview.Column" id="column11">
+                                                <property name="column_anchor">w</property>
+                                                <property name="heading_anchor">w</property>
+                                                <property name="minwidth">15</property>
+                                                <property name="stretch">true</property>
+                                                <property name="text" translatable="yes">Sub Pavilhão</property>
+                                                <property name="tree_column">false</property>
+                                                <property name="visible">true</property>
+                                                <property name="width">15</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Treeview.Column" id="column12">
+                                                <property name="column_anchor">w</property>
+                                                <property name="heading_anchor">w</property>
+                                                <property name="minwidth">15</property>
+                                                <property name="stretch">true</property>
+                                                <property name="text" translatable="yes">Área</property>
+                                                <property name="tree_column">false</property>
+                                                <property name="visible">true</property>
+                                                <property name="width">15</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Treeview.Column" id="column13">
+                                                <property name="column_anchor">w</property>
+                                                <property name="heading_anchor">w</property>
+                                                <property name="minwidth">2</property>
+                                                <property name="stretch">true</property>
+                                                <property name="text" translatable="yes">Empresa</property>
+                                                <property name="tree_column">false</property>
+                                                <property name="visible">true</property>
+                                                <property name="width">100</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Notebook.Tab" id="tab8">
+                                    <property name="text" translatable="yes">Mapa</property>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame75">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Label" id="label23">
+                                            <property name="text" translatable="yes">label22</property>
+                                            <layout manager="pack">
+                                              <property name="side">top</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Notebook.Tab" id="tab2">
+                <property name="text" translatable="yes">Exportar</property>
+                <child>
+                  <object class="ttk.Frame" id="frame30">
+                    <property name="height">200</property>
+                    <property name="padding">10</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Frame" id="frame43">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">n</property>
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Frame" id="frame35">
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">2</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="label3">
+                                <property name="font">{Helvetica} 20 {}</property>
+                                <property name="takefocus">false</property>
+                                <property name="text" translatable="yes">Exportar Notificações</property>
+                                <layout manager="pack">
+                                  <property name="anchor">nw</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame36">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">10</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Separator" id="separator6">
+                                <property name="orient">horizontal</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame48">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame46">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label6">
+                                    <property name="text" translatable="yes">Data Inicial: </property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Spinbox" id="exportar_i_dia_spin">
+                                    <property name="text" translatable="yes">D</property>
+                                    <property name="values">01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31</property>
+                                    <property name="width">2</property>
+                                    <property name="wrap">true</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Spinbox" id="exportar_i_mes_spin">
+                                    <property name="text" translatable="yes">M</property>
+                                    <property name="values">01 02 03 04 05 06 07 08 09 10 11 12</property>
+                                    <property name="width">2</property>
+                                    <property name="wrap">true</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Spinbox" id="exportar_i_ano_spin">
+                                    <property name="text" translatable="yes">AA</property>
+                                    <property name="values">2021 2022 2023</property>
+                                    <property name="width">4</property>
+                                    <property name="wrap">true</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="exportar_hoje_inicial_checkbox">
+                                    <property name="command" type="command" cbtype="simple">hoje_inicial</property>
+                                    <property name="text" translatable="yes">Hoje</property>
+                                    <layout manager="pack">
+                                      <property name="padx">5</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame47">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label7">
+                                    <property name="text" translatable="yes">Data Final: </property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Spinbox" id="exportar_f_dia_spin">
+                                    <property name="text" translatable="yes">D</property>
+                                    <property name="values">01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31</property>
+                                    <property name="width">2</property>
+                                    <property name="wrap">true</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Spinbox" id="exportar_f_mes_spin">
+                                    <property name="text" translatable="yes">M</property>
+                                    <property name="values">01 02 03 04 05 06 07 08 09 10 11 12</property>
+                                    <property name="width">2</property>
+                                    <property name="wrap">true</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Spinbox" id="exportar_f_ano_spin">
+                                    <property name="text" translatable="yes">AA</property>
+                                    <property name="values">2021 2022 2023</property>
+                                    <property name="width">4</property>
+                                    <property name="wrap">true</property>
+                                    <layout manager="pack">
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="exportar_hoje_final_checkbox">
+                                    <property name="command" type="command" cbtype="simple">hoje_final</property>
+                                    <property name="text" translatable="yes">Hoje</property>
+                                    <layout manager="pack">
+                                      <property name="padx">5</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame42">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="pady">10</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Separator" id="separator7">
+                                <property name="orient">horizontal</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Frame" id="frame49">
+                            <property name="height">200</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">x</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame50">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">10</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label9">
+                                    <property name="text" translatable="yes">Status: </property>
+                                    <layout manager="pack">
+                                      <property name="ipadx">15</property>
+                                      <property name="padx">5</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="exportar_concluido_checkbox">
+                                    <property name="text" translatable="yes">Concluído</property>
+                                    <layout manager="pack">
+                                      <property name="padx">5</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="exportar_pendente_checkbox">
+                                    <property name="text" translatable="yes">Pendente</property>
+                                    <layout manager="pack">
+                                      <property name="padx">5</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="exportar_cancelado_checkbox">
+                                    <property name="text" translatable="yes">Cancelado</property>
+                                    <layout manager="pack">
+                                      <property name="padx">5</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Checkbutton" id="exportar_recurso_checkbox">
+                                    <property name="text" translatable="yes">Recurso</property>
+                                    <layout manager="pack">
+                                      <property name="padx">5</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Frame" id="frame45">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">s</property>
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">bottom</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Frame" id="frame51">
+                            <property name="height">200</property>
+                            <property name="padding">10</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="side">right</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="label10">
+                                <property name="text" translatable="yes">Formato:</property>
+                                <layout manager="pack">
+                                  <property name="ipadx">5</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Combobox" id="combobox1">
+                                <property name="state">readonly</property>
+                                <property name="values">Execel</property>
+                                <layout manager="pack">
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="button2">
+                                <property name="text" translatable="yes">Cancelar</property>
+                                <layout manager="pack">
+                                  <property name="padx">5</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Button" id="button5">
+                                <property name="command" type="command" cbtype="simple">exportar_termos</property>
+                                <property name="text" translatable="yes">Exportar</property>
+                                <layout manager="pack">
+                                  <property name="padx">5</property>
+                                  <property name="side">left</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Frame" id="frame55">
+                        <property name="height">2000</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="expand">true</property>
+                          <property name="fill">x</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Frame" id="frame56">
+                            <property name="height">2000</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="expand">true</property>
+                              <property name="fill">both</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Label" id="label14">
+                                <property name="text" translatable="yes">Total de </property>
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label15">
+                                <property name="text" translatable="yes">Visualizar</property>
+                                <layout manager="pack">
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Label" id="label16">
+                                <property name="text" translatable="yes">Entre as datas</property>
+                                <layout manager="pack">
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
