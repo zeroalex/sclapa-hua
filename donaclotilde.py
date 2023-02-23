@@ -95,7 +95,7 @@ class Donaclotilde:
         sql = kwargs
         
         self.connect_db()
-
+        
         self.cursor.execute(sql)
         dados=self.cursor.fetchall()
         self.conn.close()

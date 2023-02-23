@@ -1,14 +1,15 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 import pygubu
-import old_model
+#import old_model
 
 from openpyxl import load_workbook
 from tkinter import PhotoImage , messagebox
 
-from model import Model
+from old_model import Model
 from ttkbootstrap import Style
 from datetime import date
+
 
 class Formatadata(object):
     def __init__(self,  data, entrada):
@@ -244,7 +245,7 @@ class abil:
         self.incluir_hora_entrada=  main.get_object('incluir_hora_entrada')
         self.incluir_observacao_entrada= main.get_object('incluir_observacao_entrada')
         self.incluir_local_infracao_entrada=  main.get_object('incluir_local_infracao_entrada')
-
+        """
         fiscais = self.madruga.busca_fiscal()
         fiscal_nome = []
         for x in fiscais:
@@ -252,7 +253,7 @@ class abil:
 
         self.incluir_fiscal_entrada['values'] = fiscal_nome
 
-
+        """
         self.lateral_visualizar_botao =  main.get_object('lateral_visualizar_botao')
         
 
@@ -295,8 +296,8 @@ class abil:
 
 
 
-        termos = self.madruga.buscar_termos()
-        self.visulalizar_num_termo_spin['values']=termos        
+        #termos = self.madruga.buscar_termos()
+        #self.visulalizar_num_termo_spin['values']=termos        
         #self.carregar_numero_termo_incluir()
 
         #variaveis da aba de processo
@@ -345,9 +346,9 @@ class abil:
         self.procurar_subpavilhao_combobox =  main.get_object('procurar_subpavilhao_combobox')
         self.procurar_lista_treeview =  main.get_object('procurar_lista_treeview')
 
-        dados = self.madruga.listar_pavilhao()
-        pavilhao = [x[0]for x in dados]
-        self.procurar_pavilhao_combobox['values'] =[" "]+ pavilhao
+        #dados = self.madruga.listar_pavilhao()
+        #pavilhao = [x[0]for x in dados]
+        #self.procurar_pavilhao_combobox['values'] =[" "]+ pavilhao
         
         self.win = main
         
@@ -1001,9 +1002,9 @@ class abil:
 
 
     def buscar_infracao_lateral(self):
-        
         busca = self.lateral_busca_entrada.get()
         dados = self.madruga.listar_multa(busca)
+        
         
 
         remove = self.tree.get_children()
@@ -1017,10 +1018,10 @@ class abil:
             data = Formatadata(x[2],'db')
             x[2]= data.data
             self.tree.insert('', tk.END, values=x)
+        
         print('asd')
-
-        old_model.pprint()
     
+
 
 
 

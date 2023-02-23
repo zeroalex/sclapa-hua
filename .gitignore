@@ -24,6 +24,7 @@ parts/
 sdist/
 var/
 wheels/
+acess/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -170,7 +171,7 @@ poetry.toml
 # ruff
 .ruff_cache/
 
-COTISTAS.MBD
-acess/COTISTAS.MBD
+.MBD
+.mdb
 
 # End of https://www.toptal.com/developers/gitignore/api/python

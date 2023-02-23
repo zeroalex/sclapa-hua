@@ -61,7 +61,7 @@ class App:
         
         filename = filedialog.askopenfilename(title = "Select a File",
                                         filetypes = (("Database",
-                                                        "*.db*"),
+                                                        "*.mdb*"),
                                                     ("all files",
                                                         "*.*")))
     
@@ -75,7 +75,7 @@ class App:
 
         
         win =ui.get_object("principal2")
-        win.master.title("OAM | Alex Odisseus - SECME")
+        win.master.title("HUA - Shopping Center LAPA | Alex Odisseus")
         win.master.geometry('900x1150')
         win.master.geometry('+1+1')
         

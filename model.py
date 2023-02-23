@@ -6,6 +6,7 @@ from datetime import date
 import sqlite3
 
 
+
 class Model(Donaclotilde):
 	"""docstring for Model"""
 	def __init__(self , data_local = None):
@@ -153,7 +154,7 @@ class Model(Donaclotilde):
 
 
 	def listar_multa(self,busca=None,lista_busca=None , data_inicial=None, data_final=None):
-		
+		"""
 		self.select('termo_multa')	
 		self.select('infracao_multa')	
 		self.select('data_multa')
@@ -186,6 +187,8 @@ class Model(Donaclotilde):
 		
 		data = self.result_list(sql+" ORDER BY id DESC")
 		return data
+		"""
+		return "asd"
 
 
 	def listar_multa_sobe(self,busca=None):
