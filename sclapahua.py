@@ -462,7 +462,6 @@ class abil:
 
         dados =self.madruga.busca_termo_resumo(termo)
 
-        dados_norma = self.madruga.busca_norma_resumo(dados[0][1])
 
         self.visualizar_empresa_label['text'] = "Empresa: "+dados[0][0]
         self.visualizar_infracao_label['text'] = "Infração: "+dados[0][1]
@@ -470,14 +469,12 @@ class abil:
         self.visualizar_data_label['text'] = "Data: "+data.data
         self.visualizar_localizacao_label['text'] = "Localização: "+dados[0][5]
 
-        self.visualizar_peso_label['text'] = "Peso: "+dados_norma[0][0]
 
         self.visualizar_peso_label.configure(style='success.Inverse.TLabel')  
 
         self.visualizar_hora_label['text'] = "Hora: "+dados[0][6]
         
         self.visualizar_descricao_mesage.delete(1.0, 'end')
-        self.visualizar_descricao_mesage.insert(1.0, dados_norma[0][1])
         self.visualizar_hora_label['text'] = "Hora: "+dados[0][6]
         self.visualizar_fiscal_label['text'] = "Fiscal: "+dados[0][7]
         self.visualizar_observacao_label['text'] = "Observação: "+dados[0][8]
@@ -486,18 +483,12 @@ class abil:
 
         self.visualizar_acao_combobox['values'] = ['Notificar',"Multar","Suspender",'Cancelado',"Recurso"]
 
-        reincidencia = self.madruga.buscar_reincidencia(dados[0][0], dados[0][1], dados[0][2])
 
-        historico_reincidencia = self.madruga.buscar_reincidencia_historico(dados[0][0], dados[0][1], dados[0][2], self.visualizar_empresa_status , self.visualizar_infracao_status )
 
         remove = self.visualizar_historico_treview.get_children()
         if remove !=():
             for x in remove:    
                 self.visualizar_historico_treview.delete(x)
-
-        for x in historico_reincidencia:
-            self.visualizar_historico_treview.insert('', tk.END, values=x)
-
 
         self.visualizar_situacao_label['text'] = "Situação: "+dados[0][3]
 
@@ -507,21 +498,8 @@ class abil:
             self.visualizar_situacao_label.configure(style='danger.Inverse.TLabel')  
 
 
-
-        calculo_reincidencia = self.madruga.calcular_reincidencia(str(len(reincidencia)), dados_norma[0][0])
-
-        print(str(len(reincidencia)))
         
-        print(calculo_reincidencia)
         
-        if calculo_reincidencia != []:
-            self.visualizar_recomendacao_label['text'] = calculo_reincidencia[0][0] +" - UFESP: "+calculo_reincidencia[0][1]+" - Valor: "+calculo_reincidencia[0][2]
-            self.visualizar_recomendacao_label.configure(style='success.Inverse.TLabel')
-        else:
-            if len(reincidencia) > 5:
-                self.visualizar_recomendacao_label['text'] = "Suspensão 3 dias - UFESP: 0 - Valor: 0"
-                self.visualizar_recomendacao_label.configure(style='success.Inverse.TLabel')
-            
 
         if dados[0][11] != None:
             self.processo_emissao_data_entry.delete(0,"end") 
@@ -969,7 +947,7 @@ class abil:
         item =self.lateral_termo_item.selection()[0]
 
         
-        self.lateral_termo= self.lateral_termo_item.item(item)['values'][0]
+        self.lateral_termo= self.lateral_termo_item.item(item)['values'][1]
         
 
         

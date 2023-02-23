@@ -21,18 +21,13 @@ def pprint():
 
 class Model(Donaclotilde):
 	"""docstring for Model"""
-	def __init__(self , data_local = None):
-		#super(Model, self).__init__()
-		#self.arg = argi
+	def __init__(self, data_local = None):
+		super().__init__()
+		
+		
 		self.data_local = data_local
 		self.usuario="defalt"
-		self.entrada_select=[]
-		self.entrada_from_table=[]
-		self.entrada_insert=[]
-		self.entrada_count=[]
-		self.entrada_where=[]
-		self.query=[]
-
+		
 
 	def connect_db(self):
 		#self.conn = sqlite3.connect('Z:/DEPEC/SECME/ADMINISTRATIVO/normas/database.db')
@@ -46,11 +41,6 @@ class Model(Donaclotilde):
 		"""
 		self.conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ='+self.data_local+';')
 		self.cursor = self.conn.cursor()
-
-		self.cursor.execute('select * from Agencias')
-		   	
-		for row in self.cursor.fetchall():
-		    print (row)
 
 	
 
@@ -174,33 +164,25 @@ class Model(Donaclotilde):
 
 	def listar_multa(self,busca=None,lista_busca=None , data_inicial=None, data_final=None):
 		
+		"""
+		if busca!=None:
+			sql = sql +f"where Nome Like '%{busca}%'"
+		"""
+	
 		self.select('*')
 		
 		self.from_table(" Cotistas ")
 		
-			
+		if busca:
+			self.where(busca,"Nome")
 
-		"""
-		if lista_busca == "Pendente":
-			self.where_combining("Pendente","status_multa","AND")
-		if lista_busca == "Resolvido":
-			self.where_combining("Pendente","status_multa","AND","<>")
-		
-		if data_inicial != "" and data_inicial != None:
-			self.where_combining(data_inicial,"data_multa","AND",">=")
-		if data_final != "" and data_final!= None:
-			self.where_combining(data_final,"data_multa","AND","<=")
-		"""			
-		
+	
 		sql = self.get()
-		
-		if busca!=None:
-			sql = sql +f"where Nome Like '%{busca}%'"
 		print(sql)
 		data = self.result_list(sql)
 		return data
-
-
+		
+		
 	def listar_multa_sobe(self,busca=None):
 		
 		self.select('*')
@@ -216,29 +198,20 @@ class Model(Donaclotilde):
 		return data		
 
 	def busca_termo_resumo(self,busca=''):
-		self.select('empresa_multa') # 00
-		self.select('infracao_multa') # 01
-		self.select('data_multa') # 02
-		self.select('status_multa') # 03
-		self.select('termo_multa') # 04
-		self.select('local_empresa_multa') # 05
-		self.select('hora_multa') # 06
-		self.select('fiscal_multa') # 07
-		self.select('observacao_multa') # 08
-		self.select('local_infracao_multa') # 09
-		self.select('valor_multa') # 10
-		self.select('data_recebimento_multa') # 11
-		self.select('processo_multa') # 12
-
-
+		self.select('*') # 00
 		
-		self.from_table("cadastro_multa")
+		self.from_table("Cotistas")
 		if busca!='':
-			self.where(busca,"termo_multa","=")
+
+			self.where(busca,"Nome","=")
 			
 		sql = self.get()
+		print(sql)
 		data = self.result_list(sql)
+		print(data)
 		return data
+
+
 
 	def busca_norma_resumo(self,busca):
 		self.select('peso_infracao')

@@ -10,8 +10,9 @@ class Donaclotilde:
         self.entrada_from_table=[]
         self.entrada_where=[]
         self.entrada_insert=[]
+        self.entrada_limite=[]
+        self.entrada_order=[]
         self.query=[]
-        self.banco_dados=[]
 
     def connect_db(self):
         #self.conn = sqlite3.connect('‪Z:/DEPEC/SECME/ADMINISTRATIVO/normas/database.db')
@@ -24,115 +25,102 @@ class Donaclotilde:
         self.banco_dados.append(banco)
 
 
-    def select(self,kwargs):
-        data= kwargs
 
-        if type(data) is list:
-            for x in data:
-                if self.entrada_select:
-                    self.entrada_select.append(" , ")
+    def connect_db(self):
+        self.conn = sqlite3.connect('database.db')
+        self.cursor = self.conn.cursor()
         
-                self.entrada_select.append(x)
-        else:
-            if self.entrada_select:
-                self.entrada_select.append(" , ")
-            self.entrada_select.append(data)
+    def clear_vars(self):
+        self.entrada_select=[]
+        self.entrada_count=[]
+        self.entrada_from_table=[]
+        self.entrada_insert=[]
+        self.entrada_where=[]
+        self.entrada_limite=[]
+        self.entrada_order=[]
 
-
-    def count(self,busca):
-        data= busca
-        if not self.entrada_count:
-            self.entrada_count.append("COUNT(")
+        self.query=[]
         
-        if type(data) is list:
-            for x in data:
-                self.entrada_count.append(x)
-            self.entrada_count.append(")")
+
+    def select(self,column):
+        self.entrada_select.append(column)
+        
+
+    def count(self,kwargs):
+        self.entrada_count.append(kwargs)
+
+
+    def where(self,search, column , operator='LIKE', sign='any'):
+        
+
+        self.entrada_where.append(column)
+        self.entrada_where.append(operator)
+        
+        if operator=='LIKE':
+            if sign=='any': self.entrada_where.append(f"'%{search}%'")
+            if sign=='start': self.entrada_where.append(f"'{search}'%")
+            if sign=='end': self.entrada_where.append(f"%'{search}'")
+            if sign=='second': self.entrada_where.append(f"_'{search}'%")
+            if sign=='least2': self.entrada_where.append(f"'{search}'_%")
+            if sign=='least3': self.entrada_where.append(f"'{search}'__%")
+
         else:
-            self.entrada_count.append(data)
-            self.entrada_count.append(")")
-
-        #count funcionando sozinho tem que arrumar para funcionar junto con select
-        #hoje ele imprimi: SELECT data COUNT( data visivel ) FROM autorizacao_debito
-        #tem que imprimir: SELECT data, COUNT( data visivel ) FROM autorizacao_debito
+            self.entrada_where.append(f"'{str(search)}'")
 
 
-    def where(self,busca, coluna, filtro='LIKE'):
-
-        self.entrada_where.append("WHERE")
-
-        self.entrada_where.append(coluna)
-        self.entrada_where.append(filtro)
-        if filtro=='LIKE':
-            self.entrada_where.append('"%'+busca+'%"')
-        else:
-            self.entrada_where.append('"'+busca+'"')
-    def where_combining(self, busca, coluna, operator, filtro='LIKE'):
+    def where_combining(self, operator):
         
         self.entrada_where.append(operator)
-        self.entrada_where.append(coluna)
-        self.entrada_where.append(filtro)
-        if filtro=='LIKE':
-            self.entrada_where.append('"%'+busca+'%"')
-        else:
-            self.entrada_where.append('"'+busca+'"')
         
-
 
     def from_table(self,kwargs):
-        data= kwargs
-        if not self.entrada_from_table:
-            self.entrada_from_table.append("FROM")
         
-        if type(data) is list:
-            for x in data:
-                self.entrada_from_table.append(x)
-        else:
-            self.entrada_from_table.append(data)
+        self.entrada_from_table.append(kwargs)
 
 
-    def result_list(self,kwargs):
-        sql = kwargs
+    def result_list(self,sql):
         
-        self.connect_db()
-        
+        self.connect_db()        
         self.cursor.execute(sql)
         dados=self.cursor.fetchall()
         self.conn.close()
-        
-        
-        lista = []
-        for dado in dados:
-            iten = list(dado)
-            if type(iten[0]) is int:
-                iten[0]= str(iten[0])
-            lista.append(iten)
+
+        lista=[list(x) for x in dados]
                 
         return lista
-    def result_first(self,kwargs):
 
-        sql = kwargs
+    def result_first(self,sql):
+
         self.connect_db()
         
         self.cursor.execute(sql)
         dado=self.cursor.fetchone()
         self.conn.commit()
         self.conn.close()
-        
-            
+             
         return dado
-    def limit(self,kwargs):
-        #falta
-        pass
-    def order(self,kwargs):
-        #escrever se é crescente ou decresente
+ 
+    def limit(self,initial, final):
 
-
+        self.entrada_limite.append('LIMIT '+str(initial) +', '+str(final)+" ")
         pass
 
+
+    def order(self,column):
+        self.entrada_order.append(column)
         
-    def result_dict(self,kwargs):
-        sql = kwargs
+        pass
+    def order_asc(self,column):
+        self.entrada_order.append(column + ' ASC' )
+        
+        pass
+    def order_desc(self,column):
+        self.entrada_order.append(column + ' DESC')
+        
+        pass
+        
+    def result_dict(self,sql):
+
         self.connect_db()
         self.cursor.execute(sql)
         dados=self.cursor.fetchall()
@@ -142,122 +130,66 @@ class Donaclotilde:
     
 
     def get(self):
-        self.query.append("SELECT")
-        if self.entrada_select:
-            for x in self.entrada_select:
-                self.query.append(x)
-        if self.entrada_count:
-            if self.entrada_select:
-                self.query.append(" , ")
-            for x in self.entrada_count:
-                self.query.append(x)
-
-        if self.entrada_from_table:
-            for x in self.entrada_from_table:
-                self.query.append(x)
-        data = self.query
-        if self.entrada_where:
-            for x in self.entrada_where:
-                self.query.append(x)
-        data = self.query
-
-        self.entrada_select=[]
-        self.entrada_count=[]
-        self.entrada_from_table=[]
-        self.entrada_insert=[]
-        self.entrada_where=[]
-        self.query=[]
-        self.banco_dados=[]
         
-        sql=self.turn_sql_string(data)
-            
+        if self.entrada_select!=[]: self.query.append('SELECT '+ ' , '.join(self.entrada_select))
+
+        if self.entrada_count!=[]: self.query.append('SELECT COUNT ('+ ' , '.join(self.entrada_count)+')')
+
+        self.query.append('FROM '+ ' , '.join(self.entrada_from_table))
+        
+        if self.entrada_where!=[]: self.query.append( 'WHERE '+ ' '.join(self.entrada_where))
+        
+        if self.entrada_order!=[]: self.query.append( 'ORDER BY '+ ' , '.join( self.entrada_order))
+        
+        if self.entrada_limite!=[]: self.query.append(' '.join( self.entrada_limite))
+        
+        #print(self.query)
+        sql=self.turn_sql_string(self.query)
+        
+        #print(data)
+        self.clear_vars()
+        
+        #print(sql)    
         return sql
 
     def set(self,tabela,valores,colunas):
         
-        self.entrada_insert.append("INSERT INTO")
+        self.entrada_insert.append("INSERT INTO "+tabela+" ( "+ ' , '.join(colunas)+" ) ")
         
-        self.entrada_insert.append(tabela)
-        self.entrada_insert.append("(")
-        
-        for x in colunas:
-            self.entrada_insert.append(x)
-            self.entrada_insert.append(" , ")
-        self.entrada_insert.pop()
-        self.entrada_insert.append(")")
+        self.entrada_insert.append("VALUES ( '" + "' , '".join(valores)+"' ) ")
 
-        self.entrada_insert.append("VALUES")
-        self.entrada_insert.append("(")
-        
-        for x in valores:
-            self.entrada_insert.append(' "'+x+'" ')
-            self.entrada_insert.append(" , ")
-        self.entrada_insert.pop()
-    
-        self.entrada_insert.append(")")
+        sql=self.turn_sql_string(self.entrada_insert)
 
+        self.clear_vars()
 
-        data = self.entrada_insert
-
-        self.entrada_select=[]
-        self.entrada_from_table=[]
-        self.entrada_insert=[]
-        self.entrada_where=[]
-        self.query=[]
-        
-        sql=self.turn_sql_string(data)
+        print(sql)
         return sql
+    
     def setup(self,tabela,valores,colunas):
         
-        self.entrada_insert.append("UPDATE")
-        
-        self.entrada_insert.append(tabela)
-        self.entrada_insert.append("SET")
-        self.entrada_insert.append("(")
-        
-        for x in colunas:
-            self.entrada_insert.append(' "'+x+'" ')
-            self.entrada_insert.append(" , ")
-        self.entrada_insert.pop()
-        self.entrada_insert.append(")")
+        self.entrada_insert.append("UPDATE "+tabela+" SET ( "+ ' , '.join(colunas)+" ) ")
 
-        self.entrada_insert.append("=")
-        self.entrada_insert.append("(")
-        
-        for x in valores:
-            self.entrada_insert.append(' "'+x+'" ')
-            self.entrada_insert.append(" , ")
-        self.entrada_insert.pop()
-    
-        self.entrada_insert.append(")")
+        self.entrada_insert.append(" = ( '" + "' , '".join(valores)+"' ) ")
 
-        if self.entrada_where:
+        if self.entrada_where!=[]: self.entrada_insert.append( 'WHERE '+ ' '.join(self.entrada_where))
         
-            for x in self.entrada_where:
-                self.entrada_insert.append(x)
-        
+        sql=self.turn_sql_string(self.entrada_insert)
 
+        self.clear_vars()
 
-        data = self.entrada_insert
-
-        self.entrada_select=[]
-        self.entrada_from_table=[]
-        self.entrada_insert=[]
-        self.entrada_where=[]
-        self.query=[]
-        
-        sql=self.turn_sql_string(data)
+        print(sql)
         return sql
         
         
-    def insert(self,kwargs):
-        sql=kwargs
+    def insert(self,sql):
+        
         self.connect_db()
         self.cursor.execute(sql)
         self.conn.commit()
         self.conn.close()
-    def update(self,kwargs):
-        sql=kwargs
+
+    def update(self,sql):
+        
         self.connect_db()
         self.cursor.execute(sql)
         self.conn.commit()
@@ -265,7 +197,5 @@ class Donaclotilde:
 
         
     def turn_sql_string(self,kwargs):
-        sql=''
-        for palavra in kwargs:
-            sql=sql+" "+palavra
+        sql=' '.join(kwargs)
         return sql
