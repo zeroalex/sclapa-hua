@@ -47,10 +47,8 @@ class Model(Donaclotilde):
 	def multa_salvar(self,kwargs):
 		
 		data_hoje = date.today()
-		kwargs["criado_em_multa"] = str(data_hoje)
-		kwargs["valor_multa"] = "Pendente"
-		kwargs["status_multa"] = "Pendente"
-
+		kwargs["Implantado"] = str(data_hoje)
+		
 		valores=[]
 		for x in kwargs.values():
 			valores.append(x)
@@ -59,27 +57,31 @@ class Model(Donaclotilde):
 		for x in kwargs.keys():
 			colunas.append(x)
 
-		sql = self.set("cadastro_multa",valores,colunas)
+		sql = self.set("Cotistas",valores,colunas)
 		#print(sql)
-		verifica = self.buscar_multa_repetida(kwargs)
+		
+		verifica = self.buscar_cotista_repetida(kwargs)
 		
 		if verifica != []:
 			return verifica
 		else:
 			self.insert(sql)
 			return True
-
-
-	def buscar_multa_repetida(self,dados):
 		
-		self.select('termo_multa')
-		self.from_table("cadastro_multa")
+	
 
-		self.where(dados['empresa_multa'],"empresa_multa","=")
+
+	def buscar_cotista_repetida(self,dados):
 		
+		self.select('Nome')
+		self.from_table("Cotistas")
+
+		self.where(dados['Nome'],"Nome","=")
+		
+		"""
 		self.where_combining(dados['infracao_multa'],"infracao_multa","AND","=")
 		self.where_combining(dados['data_multa'],"data_multa","AND","=")
-		
+		"""
 		sql = self.get()
 		data = self.result_list(sql)
 		
@@ -198,6 +200,27 @@ class Model(Donaclotilde):
 		return data		
 
 	def busca_termo_resumo(self,busca=''):
+		#Código -
+		#Nome c
+		#FisJur c
+		#Documento c
+
+		#Endereço c
+		#Cidade c 
+		#Estado c
+		#Cep1 c
+		#Cep2 c
+		
+		#Banco
+		#Agencia
+		#Conta
+		
+		#SujeitoIR -
+		#CodFolha -
+		#Implantado -
+		#Pagamento -
+		
+
 		self.select('*') # 00
 		
 		self.from_table("Cotistas")

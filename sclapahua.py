@@ -208,18 +208,34 @@ class abil:
 
         self.incluir_termo =  main.get_object("incluir_termo")
 
-        self.incluir_local_entrada =  main.get_object('incluir_local_entrada')
         
+        self.incluir_doc_tipo_entrada =  main.get_object('incluir_doc_tipo_entrada')
+        self.incluir_doc_numero_entrada =  main.get_object('incluir_doc_numero_entrada')
+        """
+        tipo_doc = ["CPF", "CNPJ"]
         
-        
+        self.incluir_local_entrada.configure(values=tipo_doc)
+        """
 
         self.lateral_termo_item =  main.get_object('lateral_termo_item')
 
 
-        self.incluir_empresa_entrada =  main.get_object('incluir_empresa_entrada')
-        self.incluir_infracao_entrada =  main.get_object('incluir_infracao_entrada')
-        self.incluir_termo_botao =  main.get_object('incluir_termo_botao')
+        self.incluir_nome_entrada =  main.get_object('incluir_nome_entrada')
+        self.incluir_telefone_entrada =  main.get_object('incluir_telefone_entrada')
 
+      
+        self.incluir_cep_entrada =  main.get_object('incluir_cep_entrada')
+        self.incluir_nome_rua_entrada =  main.get_object('incluir_nome_rua_entrada')
+        self.incluir_numero_rua_entrada =  main.get_object('incluir_numero_rua_entrada')
+        self.incluir_cidade_entrada =  main.get_object('incluir_cidade_entrada')
+        self.incluir_estado_entrada =  main.get_object('incluir_estado_entrada')
+        self.incluir_banco_entrada =  main.get_object('incluir_banco_entrada')
+        self.incluir_agencia_entrada =  main.get_object('incluir_agencia_entrada')
+        self.incluir_conta_entrada =  main.get_object('incluir_conta_entrada')
+
+
+
+        
         self.dados_incluir = {}
 
 
@@ -240,11 +256,8 @@ class abil:
 
 
 
-        self.incluir_data_entrada=  main.get_object('incluir_data_entrada')
-        self.incluir_fiscal_entrada=  main.get_object('incluir_fiscal_entrada')
-        self.incluir_hora_entrada=  main.get_object('incluir_hora_entrada')
-        self.incluir_observacao_entrada= main.get_object('incluir_observacao_entrada')
-        self.incluir_local_infracao_entrada=  main.get_object('incluir_local_infracao_entrada')
+        self.incluir_telefone_entrada=  main.get_object('incluir_telefone_entrada')
+
         """
         fiscais = self.madruga.busca_fiscal()
         fiscal_nome = []
@@ -795,6 +808,7 @@ class abil:
     def carregar_numero_termo_incluir(self):
         
         termo = self.madruga.busca_proximo_termo()
+
         proximo_termo = termo[0][0].split("/")
         proximo_termo = str(int(proximo_termo[0])+1)+"/"+proximo_termo[1]
         self.incluir_termo_botao['text']= proximo_termo
@@ -803,53 +817,59 @@ class abil:
 
     def cadastrar_multa(self):
 
-        self.dados_incluir["local_empresa_multa"]=self.incluir_local_entrada.get()
+        #Código -
 
 
-        data=self.incluir_data_entrada.get()
-
-        data = Formatadata(data, 'interface')
-
-
-        self.dados_incluir["data_multa"]=data.db
-        #ver funcao para pegar próximo numero
+        #SujeitoIR -
+        #CodFolha -
+        #Implantado -
+        #Pagamento -
         
-        termo = self.madruga.busca_proximo_termo()
+        self.dados_incluir["Código"]="000001"
+        #escrevar codigo para codigo
 
-        proximo_termo = termo[0][0].split("/")
 
-        proximo_termo = str(int(proximo_termo[0])+1)+"/"+proximo_termo[1]
+        self.dados_incluir["Nome"]=self.incluir_nome_entrada.get()
+
+        doc = self.incluir_doc_tipo_entrada.get()
         
-        self.dados_incluir["termo_multa"]=proximo_termo
-
-        self.incluir_data_entrada.get()
-
-        local = self.incluir_local_infracao_entrada.get()
-
-        if local=='':
-            self.dados_incluir['local_infracao_multa'] = self.incluir_local_entrada.get()
+        if doc == "CPF":
+            doc = 'F'
         else:
-            self.dados_incluir['local_infracao_multa'] = self.incluir_local_infracao_entrada.get()
+            doc='J'
 
-        self.dados_incluir["fiscal_multa"]=self.incluir_fiscal_entrada.get()
+        self.dados_incluir["FisJur"]=doc
+
+        self.dados_incluir["Documento"]=self.incluir_doc_numero_entrada.get()
         
-        self.dados_incluir["hora_multa"]=self.incluir_hora_entrada.get()
+        rua = self.incluir_nome_rua_entrada.get()
+        numero = self.incluir_numero_rua_entrada.get()
+        endereco = rua+" "+numero
+        self.dados_incluir["Endereço"]=endereco
+
+
+        self.dados_incluir["Cidade"]=self.incluir_cidade_entrada.get()
+        self.dados_incluir["Estado"]=self.incluir_estado_entrada.get()
+
         
-        self.dados_incluir["observacao_multa"]=  self.incluir_observacao_entrada.get("1.0","end-1c")
+        cep = self.incluir_cep_entrada.get()
+        cep = cep.split("-")
 
-        usuario = "ALEX - 50420"
+        self.dados_incluir["Cep1"]=cep[0]
+        self.dados_incluir["Cep2"]=cep[1]
 
+    
+        self.dados_incluir['Banco'] = self.incluir_banco_entrada.get()
+        self.dados_incluir['Agencia'] = self.incluir_agencia_entrada.get()
+        self.dados_incluir['Conta'] = self.incluir_conta_entrada.get()
 
-        self.dados_incluir["usuario_multa"] = usuario        
+    
+
+        
+    
         resposta = self.madruga.multa_salvar(self.dados_incluir)
         
         
-
-
-
-        termos = self.madruga.buscar_termos()
-        self.visulalizar_num_termo_spin['values']=termos        
-        self.carregar_numero_termo_incluir()
         
         self.pop_multa_cadastrada(resposta)
 
@@ -857,31 +877,43 @@ class abil:
     def pop_multa_cadastrada(self, resposta):
 
         if resposta == True:
-            resposta = messagebox.showinfo("Cadastro Termo", "Termo cadastrado com sucesso")
+            resposta = messagebox.showinfo("Cadastro Cotista", "Cotista cadastrado com sucesso")
             self.cadastrar_multa_apagar_dados()
         else:
-            resposta = messagebox.showwarning("Cadastro Termo", "Cuidado, esta notificação já existe -" + resposta[0][0])
+            resposta = messagebox.showwarning("Cadastro Termo", "Cuidado, cotista já existe -" + resposta[0][0])
             
     def cadastrar_multa_apagar_dados(self):
-        self.incluir_empresa_entrada.delete(0,"end")
+            #escrevar codigo para codigo
 
-        self.incluir_local_entrada.select_clear()
+
+        self.incluir_nome_entrada.delete(0,"end")
+
+        self.incluir_doc_tipo_entrada.set("")
         
-        self.incluir_local_entrada.set("")
         
-        self.incluir_fiscal_entrada.set("")
-
-        incluir_local=[]
-        self.incluir_local_entrada.configure(values=incluir_local)
+        self.incluir_doc_numero_entrada.delete(0,"end")
+        self.incluir_telefone_entrada.delete(0,"end")
         
-        self.incluir_data_entrada.delete(0,"end")
+        
+        self.incluir_nome_rua_entrada.delete(0,"end")
+        self.incluir_numero_rua_entrada.delete(0,"end")
+        
 
-        self.incluir_hora_entrada.delete(0,"end")
+        self.incluir_cidade_entrada.delete(0,"end")
+        self.incluir_estado_entrada.delete(0,"end")
+        
+        self.incluir_cep_entrada.delete(0,"end")
+        
+        
+        self.incluir_banco_entrada.set("")
+        self.incluir_banco_entrada.select_clear()
+        banco = []
+        self.incluir_banco_entrada.configure(values=banco)
 
-        self.incluir_observacao_entrada.delete(1.0,"end")
-        self.incluir_infracao_entrada.delete(0,"end")
-        self.incluir_local_infracao_entrada.delete(0,"end")
-
+        self.incluir_agencia_entrada.set("")
+        self.incluir_agencia_entrada.select_clear()        
+        self.incluir_conta_entrada.delete(0,"end")
+        
 
 
     def buscar_empresa(self):
