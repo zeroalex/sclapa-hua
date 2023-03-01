@@ -226,7 +226,7 @@ class Model(Donaclotilde):
 		self.from_table("Cotistas")
 		if busca!='':
 
-			self.where(busca,"Nome","=")
+			self.where(busca,"Código","=")
 			
 		sql = self.get()
 		print(sql)
@@ -365,11 +365,28 @@ class Model(Donaclotilde):
 		data = self.result_list(sql + " WHERE id=(SELECT max(id) FROM cadastro_multa)")
 		return data
 
-	def busca_fiscal(self):
+	def busca_banco(self):
 
-		self.select('nome')
-		self.select('matricula')
-		self.from_table("cadastro_funcionarios")
+		
+		self.select('Banco')
+		self.select('Descrição')
+		
+		self.from_table("Bancos")
+
+		sql = self.get()
+		data = self.result_list(sql)
+		return data
+
+		pass
+
+	def busca_agencia(self,busca):
+
+		
+		self.select('Agencia')
+		self.select('Descrição')
+		
+		self.from_table("Agencias")
+		self.where(busca,"Banco","=")
 
 		sql = self.get()
 		data = self.result_list(sql)

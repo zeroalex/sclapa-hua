@@ -68,7 +68,7 @@
                                 </layout>
                                 <child>
                                   <object class="ttk.Button" id="lateral_visualizar_botao">
-                                    <property name="command" type="command" cbtype="simple">visualizar_termo_lateral</property>
+                                    <property name="command" type="command" cbtype="simple">visualizar_cotista_lateral</property>
                                     <property name="text" translatable="yes">Visualizar</property>
                                     <layout manager="pack">
                                       <property name="anchor">e</property>
@@ -405,6 +405,7 @@
                                 </child>
                                 <child>
                                   <object class="ttk.Entry" id="incluir_telefone_entrada">
+                                    <bind sequence="&lt;Key&gt;" handler="ajusta_telefone" add="True" />
                                     <layout manager="pack">
                                       <property name="anchor">n</property>
                                       <property name="expand">true</property>
@@ -489,7 +490,7 @@
                                     </child>
                                     <child>
                                       <object class="ttk.Button" id="botao">
-                                        <property name="command" type="command" cbtype="simple">buscar_infracao_pop</property>
+                                        <property name="command" type="command" cbtype="simple">buscar_cep</property>
                                         <property name="text" translatable="yes">Buscar</property>
                                         <layout manager="pack">
                                           <property name="anchor">n</property>
@@ -500,6 +501,7 @@
                                     <child>
                                       <object class="ttk.Entry" id="incluir_cep_entrada">
                                         <property name="state">normal</property>
+                                        <bind sequence="&lt;Key&gt;" handler="ajusta_cep" add="" />
                                         <layout manager="pack">
                                           <property name="anchor">n</property>
                                           <property name="fill">x</property>
@@ -693,6 +695,7 @@
                                 </child>
                                 <child>
                                   <object class="ttk.Combobox" id="incluir_banco_entrada">
+                                    <bind sequence="&lt;&lt;ComboboxSelected&gt;&gt;" handler="busca_agencia" add="" />
                                     <layout manager="pack">
                                       <property name="anchor">n</property>
                                       <property name="expand">true</property>
@@ -803,7 +806,7 @@
                               <object class="ttk.Label" id="visualizar_titulo_label">
                                 <property name="font">{Helvetica} 20 {}</property>
                                 <property name="takefocus">false</property>
-                                <property name="text" translatable="yes">Notificação de Penalidade</property>
+                                <property name="text" translatable="yes">Dados Cotísta</property>
                                 <layout manager="pack">
                                   <property name="anchor">nw</property>
                                   <property name="side">left</property>
@@ -855,10 +858,10 @@
                               <property name="side">top</property>
                             </layout>
                             <child>
-                              <object class="ttk.Label" id="visualizar_empresa_label">
+                              <object class="ttk.Label" id="visualizar_nome_label">
                                 <property name="anchor">ne</property>
                                 <property name="justify">left</property>
-                                <property name="text" translatable="yes">Empresa: </property>
+                                <property name="text" translatable="yes">Nome: </property>
                                 <layout manager="pack">
                                   <property name="pady">5</property>
                                   <property name="side">left</property>
@@ -877,10 +880,10 @@
                               <property name="side">top</property>
                             </layout>
                             <child>
-                              <object class="ttk.Label" id="visualizar_localizacao_label">
+                              <object class="ttk.Label" id="visualizar_endereco_label">
                                 <property name="anchor">ne</property>
                                 <property name="justify">left</property>
-                                <property name="text" translatable="yes">Localização: </property>
+                                <property name="text" translatable="yes">Endereço: </property>
                                 <layout manager="pack">
                                   <property name="side">left</property>
                                 </layout>
@@ -929,8 +932,8 @@
                                   <property name="side">left</property>
                                 </layout>
                                 <child>
-                                  <object class="ttk.Label" id="visualizar_infracao_label">
-                                    <property name="text" translatable="yes">Infração: </property>
+                                  <object class="ttk.Label" id="visualizar_documento_label">
+                                    <property name="text" translatable="yes">Documento: </property>
                                     <layout manager="pack">
                                       <property name="expand">true</property>
                                       <property name="fill">x</property>
@@ -952,7 +955,7 @@
                                 <child>
                                   <object class="ttk.Label" id="visualizar_peso_label">
                                     <property name="padding">5</property>
-                                    <property name="text" translatable="yes">Peso:</property>
+                                    <property name="text" translatable="yes">Ativo</property>
                                     <layout manager="pack">
                                       <property name="anchor">w</property>
                                       <property name="expand">true</property>

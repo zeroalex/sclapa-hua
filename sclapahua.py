@@ -9,6 +9,7 @@ from tkinter import PhotoImage , messagebox
 from old_model import Model
 from ttkbootstrap import Style
 from datetime import date
+from pycep_correios import get_address_from_cep, WebService
 
 
 class Formatadata(object):
@@ -229,7 +230,17 @@ class abil:
         self.incluir_numero_rua_entrada =  main.get_object('incluir_numero_rua_entrada')
         self.incluir_cidade_entrada =  main.get_object('incluir_cidade_entrada')
         self.incluir_estado_entrada =  main.get_object('incluir_estado_entrada')
+        
         self.incluir_banco_entrada =  main.get_object('incluir_banco_entrada')
+
+        bancos = self.madruga.busca_banco()
+        banco = []
+        for x in bancos:
+            banco.append(x[0]+" - "+x[1].strip())
+        
+        
+        self.incluir_banco_entrada['values'] = banco
+
         self.incluir_agencia_entrada =  main.get_object('incluir_agencia_entrada')
         self.incluir_conta_entrada =  main.get_object('incluir_conta_entrada')
 
@@ -282,10 +293,10 @@ class abil:
         #variaveis da aba de visualização
 
         self.visulalizar_num_termo_spin =  main.get_object('visulalizar_num_termo_spin')
-        self.visualizar_empresa_label =  main.get_object('visualizar_empresa_label')
-        self.visualizar_infracao_label =  main.get_object('visualizar_infracao_label')
+        self.visualizar_nome_label =  main.get_object('visualizar_nome_label')
+        self.visualizar_documento_label =  main.get_object('visualizar_documento_label')
         self.visualizar_data_label =  main.get_object('visualizar_data_label')
-        self.visualizar_localizacao_label =  main.get_object('visualizar_localizacao_label')
+        self.visualizar_endereco_label =  main.get_object('visualizar_endereco_label')
         self.visualizar_peso_label =  main.get_object('visualizar_peso_label')
         self.visualizar_hora_label =  main.get_object('visualizar_hora_label')
         self.visualizar_local_ocorrencia_label =  main.get_object('visualizar_local_ocorrencia_label')
@@ -428,6 +439,43 @@ class abil:
 
         workbook.save(filename='relatorios/relatorio.xlsx')
 
+    def ajusta_telefone(self,keys):
+        
+        telefone = self.incluir_telefone_entrada.get()
+        key = telefone.strip("asdfghjkklçqwertyuiopzxcvbnm,.;:[]{}!@#$%¨&*(-")
+        
+        if len(key) >2 and ")" not in key:
+            
+
+            dd = key[0:2]
+            tel = key[2:]
+            
+            key = dd+") "+tel
+
+        if len(key) >9 and "-" not in key:
+            tel1=key[0:9]
+            tel2=key[9:]
+            key = tel1+"-"+tel2
+
+
+        self.incluir_telefone_entrada.delete(0,"end")
+        
+        self.incluir_telefone_entrada.insert(0,"("+str(key))
+    
+    def ajusta_cep(self,keys):
+
+        cep = self.incluir_cep_entrada.get()
+        key = cep.strip("asdfghjkklçqwertyuiopzxcvbnm,.;:[]{}!@#$%¨&*(-")
+        
+        if len(key) >5 and "-" not in key:
+            tel1=key[0:5]
+            tel2=key[5:]
+            key = tel1+"-"+tel2
+
+        self.incluir_cep_entrada.delete(0,"end")
+        
+        self.incluir_cep_entrada.insert(0,str(key))
+
     def hoje_inicial(self):
 
         if 'selected' in self.exportar_hoje_inicial_checkbox.state():
@@ -474,13 +522,17 @@ class abil:
         termo = self.visulalizar_num_termo_spin.get()
 
         dados =self.madruga.busca_termo_resumo(termo)
+        
+        self.visualizar_nome_label['text'] = "Nome: "+dados[0][1]
+        
+        
+        self.visualizar_endereco_label['text'] = "Endereço: "+dados[0][2] +" - "+dados[0][3] +" - "+dados[0][4] 
+ 
+        self.visualizar_documento_label['text'] = "Documento: "+dados[0][9]
 
-
-        self.visualizar_empresa_label['text'] = "Empresa: "+dados[0][0]
-        self.visualizar_infracao_label['text'] = "Infração: "+dados[0][1]
         data = Formatadata(dados[0][2], 'db')
         self.visualizar_data_label['text'] = "Data: "+data.data
-        self.visualizar_localizacao_label['text'] = "Localização: "+dados[0][5]
+
 
 
         self.visualizar_peso_label.configure(style='success.Inverse.TLabel')  
@@ -939,13 +991,17 @@ class abil:
         
         ui.connect_callbacks(Busca(ui,self))
 
-    def buscar_infracao_pop(self):
-        ui = pygubu.Builder()
-        ui.add_from_file("window_busca_infracao.ui")        
-        win =ui.get_object("busca_infracao_toplevel")
-        
-        ui.connect_callbacks(Busca_infracao(ui,self))
+    def buscar_cep(self):
+        cep = self.incluir_cep_entrada.get()
+        data = get_address_from_cep(cep, webservice=WebService.APICEP)
 
+        self.incluir_nome_rua_entrada.delete(0,"end")
+        self.incluir_nome_rua_entrada.insert(0,data['logradouro'])
+        self.incluir_cidade_entrada.delete(0,"end")
+        self.incluir_cidade_entrada.insert(0,data['cidade'])
+        self.incluir_estado_entrada.delete(0,"end")
+        self.incluir_estado_entrada.insert(0,data['uf'])
+        
 
         
 
@@ -972,6 +1028,26 @@ class abil:
             incluir_local.append(x[0]+" | "+x[1])
         
         self.incluir_local_entrada.configure(values=incluir_local)
+    
+    def busca_agencia(self,asd):
+    
+        banco = self.incluir_banco_entrada.get()
+        asd = banco.split(" - ")
+        banco_num = asd[0]
+
+
+        agencias = self.madruga.busca_agencia(banco_num)
+        
+        
+        self.incluir_agencia_entrada.select_clear()
+        self.incluir_agencia_entrada.set('')
+
+        agencia = []
+        for x in agencias:
+            agencia.append(x[0].strip()+" - "+x[1].strip())
+        
+        
+        self.incluir_agencia_entrada['values'] = agencia
 
     def selecionar_item_lateral(self,asd):
         
@@ -979,8 +1055,14 @@ class abil:
         item =self.lateral_termo_item.selection()[0]
 
         
-        self.lateral_termo= self.lateral_termo_item.item(item)['values'][1]
-        
+        self.lateral_termo= self.lateral_termo_item.item(item)['values'][0]
+        if len(str(self.lateral_termo)) < 6:
+            self.lateral_termo = "0"+str(self.lateral_termo)
+        if len(str(self.lateral_termo)) < 6:
+            self.lateral_termo = "0"+self.lateral_termo
+        if len(str(self.lateral_termo)) < 6:
+            self.lateral_termo = "0"+self.lateral_termo
+
 
         
 
@@ -995,9 +1077,12 @@ class abil:
 
 
 
-    def visualizar_termo_lateral(self):
+    def visualizar_cotista_lateral(self):
+        #####
         #abre a tab de visualizar
         self.incluir_termo.select(self.incluir_termo.tabs()[2])
+        
+
         #coloca o termo selecionadop no spin de visualizar
 
         self.visulalizar_num_termo_spin.set(self.lateral_termo)
